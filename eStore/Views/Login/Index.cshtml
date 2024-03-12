@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-4" style="background-color: whitesmoke;box-shadow: 2px 2px 2px 5px silver; padding:30px; border-radius:5px">
+        <h1 class="text-center">Login</h1>
+        <hr />
+
+        <form method="POST" action="Login">
+            @Html.AntiForgeryToken()
+            <div class="form-group mb-2">
+                <label for="email" class="control-label">Email</label>
+                <input id="email" name="email" type="email" class="form-control" value="@ViewBag.Email" />
+            </div>
+            <div class="form-group mb-4">
+                <label for="password" class="control-label">Password</label>
+                <input id="password" name="password" type="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Login" class="btn btn-primary" />
+            </div>
+        </form>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Message))
+        {
+            <p class="alert alert-danger" role="alert">@ViewBag.Message</p>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
